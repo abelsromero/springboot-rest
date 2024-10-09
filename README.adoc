@@ -1,0 +1,9 @@
+== Spring Boot Hello Rest Controller Demo
+
+
+= CF deploy
+
+----
+./gradlew bootJar
+cf push
+----
