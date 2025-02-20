@@ -1,0 +1,11 @@
+{
+  "routes": [
+    {
+      "uri": "https://httpbin.org",
+      "path": "/httpbin/**",
+      "filters": [
+        "StripPrefix=1"
+      ]
+    }
+  ]
+}

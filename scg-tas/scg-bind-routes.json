@@ -1,0 +1,10 @@
+{
+  "routes": [
+    {
+      "path": "/hello",
+      "filters": [
+        "StripPrefix=0"
+      ]
+    }
+  ]
+}

@@ -1,9 +1,29 @@
-== Spring Boot Hello Rest Controller Demo
+= Spring Boot Hello Rest Controller Demo
 
-
-= CF deploy
+== CF deploy
 
 ----
 ./gradlew bootJar
 cf push
+----
+
+== Testing with SCG for Tanzu
+
+=== Applying routes
+
+.Create service and adds 2 sets of routes
+----
+cf create-service p.gateway standard my-gateway
+
+cf update-service my-gateway -c scg-preflight-route.json
+// it may take some goot time showing 'update in progess', but works
+cf bind-service spring-boot-hello-world my-gateway -c scg-bind-routes.json
+// scg service may show 'update failed', but works
+----
+
+=== Validating
+
+.Obtain SCG endpoint & Call
+----
+curl "$(cf service my-gateway | grep dashboard | awk '{print $2}' | sed 's/scg-dashboard$//')hello" -v
 ----
