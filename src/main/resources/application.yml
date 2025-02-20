@@ -1,0 +1,8 @@
+
+spring:
+  application:
+    name: springboot-rest
+logging:
+  level:
+    com.example.rest: DEBUG
+#    org.springframework.boot: DEBUG
