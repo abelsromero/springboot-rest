@@ -11,13 +11,12 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
-public class HitController {
+class HitController {
 
     private static final Logger logger = LoggerFactory.getLogger(HitController.class);
     private static final String hostname;
 
     private final AtomicInteger hitCount = new AtomicInteger(0);
-
 
     static {
         try {
@@ -28,7 +27,7 @@ public class HitController {
     }
 
     @GetMapping("/hit")
-    public Map<String, Object> sayHello() {
+    Map<String, Object> sayHello() {
         int count = hitCount.incrementAndGet();
         logger.info("Hit, {}, {}", hostname, count);
         return Map.of(

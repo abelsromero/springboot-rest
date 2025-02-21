@@ -1,0 +1,31 @@
+= K8s Load Balancing
+
+The project includes a test to monitor quality of load balancing in K8s.
+
+== Testing
+
+. Run `./scripts/deploy_k8s.sh`
++
+This will deploy the app twice, as "consumer" and "backend".
+The latter is being called form the first.
+
+. Enable access to Consumer endpoint.
+The easiest is to use `port-forward`.
+
+ kubectl port-forward svc/consumer 8080:8080
+
+. Monitor consumer logs
+
+ stern consumer
+
+. Call Consumer endpoint with
+
+ curl "http://localhost:8080/consume"
+ curl "http://localhost:8080/consume" -H 'Connection: CLOSE'
+
+You'll see the first one always hits the same instance.
+
+
+NOTE: Using `spring-cloud-starter-kubernetes-client-loadbalancer` requires granting additional K8s API permissions to the app.
+
+

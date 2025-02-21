@@ -2,6 +2,10 @@
 spring:
   application:
     name: springboot-rest
+  cloud:
+    kubernetes:
+      loadbalancer:
+        mode: SERVICE
 logging:
   level:
     com.example.rest: DEBUG
