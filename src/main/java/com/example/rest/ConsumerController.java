@@ -31,7 +31,7 @@ class ConsumerController {
 
         final String connectionHeader = request.getHeader(HttpHeaders.CONNECTION);
         if (StringUtils.hasLength(connectionHeader)) {
-            logger.info(connectionHeader);
+//            logger.info(connectionHeader);
             uri.header(HttpHeaders.CONNECTION, connectionHeader);
         }
 
@@ -39,10 +39,7 @@ class ConsumerController {
                 .retrieve()
                 .toEntity(HashMap.class);
 
-        entity.getHeaders()
-                .forEach((s, strings) -> logger.debug("header: {} -> {}", s, s));
-
         logger.info("Response body: {}", entity.getBody());
-        return Map.of("status", 200);
+        return Map.of("status", 200, "response", entity.getBody());
     }
 }
